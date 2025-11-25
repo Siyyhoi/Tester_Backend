@@ -14,7 +14,7 @@ const db = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306 
+  port: process.env.DB_PORT 
 });
 
 // Middleware เช็ค Token
@@ -193,4 +193,8 @@ app.get('/orders/summary', verifyToken, async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+module.exports = app;
