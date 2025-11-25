@@ -56,7 +56,7 @@ app.post('/login', async (req, res) => {
     const token = jwt.sign(
       { id: user.id, firstname: user.firstname, lastname: user.lastname },
       SECRET_KEY,
-      { expiresIn: '24h' }
+      { expiresIn: '1h' }
     );
 
     res.json({ message: 'Login successful', token });
